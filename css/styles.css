@@ -1,0 +1,15 @@
+body,h1 {
+    font-family: "Source Code Pro", monospace;
+}
+body {
+  background-image: url("DSC_0001.jpg");
+}
+#name {
+    letter-spacing: 6px;
+    float: right;
+    padding-left: 10%;
+    padding-right: 8%;
+}
+.w3-row-padding img {
+    margin-bottom: 12px;
+}
