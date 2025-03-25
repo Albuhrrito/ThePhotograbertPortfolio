@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+body,h1 {
+  font-family: "Source Code Pro", monospace;
+  
+}
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-image: url('../../../assets/DSC_0188.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#name {
+  letter-spacing: 6px;
+  padding-left: 10%;
+  padding-right: 8%;
+}
+.w3-row-padding img {
+  margin-bottom: 12px;
+}
+
+#quote {
+  color: darkslategray;
+}
