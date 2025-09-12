@@ -1,56 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Portfolio</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
-<style>
-body,h1 {
-    font-family: "Source Code Pro", monospace;
-}
-#name {
-    letter-spacing: 6px;
-    float: right;
-    padding-left: 10%;
-    padding-right: 8%;
-}
-.w3-row-padding img {
-    margin-bottom: 12px;
-}
-img {
-  border-radius: 5%;
-}
-
-img:hover {
-  transition: all 0.2s ease;
-  border-radius: 0%;
-}
-</style>
-</head>
-<body>
-
 <!-- !PAGE CONTENT! -->
 <div class="w3-content" style="max-width:1500px">
 
 <!-- Header -->
 <header class="w3-panel w3-center w3-opacity" style="padding:1vh 16px">
-
   <h1 id="name">Albert Youssef</h1>
   
   <div class="w3-padding-32">
     <div class="w3-bar w3-border">
-      <a href="index.html" class="w3-bar-item w3-button w3-light-grey">Home</a>
-      <a href="portraits.html" class="w3-bar-item w3-button">Portraits</a>
-      <a href="street.html" class="w3-bar-item w3-button w3-light-grey">Street</a>
-      <a href="products.html" class="w3-bar-item w3-button">Products</a>
-      <a href="extra.html" class="w3-bar-item w3-button w3-light-grey">Extra</a>
-      <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a routerLink="/" class="w3-bar-item w3-button w3-light-grey">Home</a>
+      <a routerLink="/portraits" class="w3-bar-item w3-button">Portraits</a>
+      <a routerLink="/street" class="w3-bar-item w3-button w3-light-grey">Street</a>
+      <a routerLink="/products" class="w3-bar-item w3-button">Products</a>
+      <a routerLink="/landscape" class="w3-bar-item w3-button w3-light-grey">Landscape</a>
+      <a routerLink="/graduation" class="w3-bar-item w3-button">Graduation</a>
+      <a routerLink="/aesthetics" class="w3-bar-item w3-button w3-light-grey">Aesthetics</a>
+      <a routerLink="/contact" class="w3-bar-item w3-button">Contact</a>
     </div>
   </div>
 </header>
@@ -58,36 +22,53 @@ img:hover {
 <!-- Photo Grid -->
 <div class="w3-row-padding" style="margin-bottom:128px">
   <div class="w3-half">
-    <img alt="sunset girl" src="images/portraits/4f58d69badda8b57a9f899ca5d36ec71.jpg" style="width:100%">
-    <img alt="professional girl" src="images/portraits/DSC_0252.jpg" style="width:100%">
-    <img alt="older lady" src="images/portraits/DSC_0035.jpg" style="width:100%">
-    <img alt="japan man" src="images/portraits/DSC_0993.jpg" style="width:100%">
-    <img alt="graduation" src="images/portraits/DSC_0082-2.jpg" style="width:100%">
-    <img alt="cool rock" src="images/portraits/DSC_0349.jpg" style="width:100%">
-    <img alt="smug" src="images/portraits/1000008842.jpg" style="width:100%">
+    <img alt="sunset girl" src="/assets/portraits/thumbnails/4f58d69badda8b57a9f899ca5d36ec71.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/4f58d69badda8b57a9f899ca5d36ec71.jpg')">
+    <img alt="professional girl" src="/assets/portraits/thumbnails/DSC_0252.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSC_0252.jpg')">
+    <img alt="older lady" src="/assets/portraits/thumbnails/DSC_0035.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSC_0035.jpg')">
+    <img alt="portrait photography" src="/assets/portraits/thumbnails/DSCF0038-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSCF0038.JPG')">
+    <img alt="professional portrait" src="/assets/portraits/thumbnails/DSCF0052-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSCF0052.JPG')">
+    <img alt="portrait session" src="/assets/portraits/thumbnails/DSCF0067-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSCF0067.JPG')">
+    <img alt="headshot photography" src="/assets/portraits/thumbnails/DSCF0070-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSCF0070.JPG')">
+    <img alt="studio portrait" src="/assets/portraits/thumbnails/DSCF0072-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSCF0072.JPG')">
   </div>
   <div id="mid"> </div>
   <div class="w3-half">
-    <img alt="mermaid girl" src="images/portraits/DSC_0745.jpg" style="width:100%">
-    <img alt="same professional girl" src="images/portraits/DSC_0284.jpg" style="width:100%">
-    <img alt="thinking" src="images/portraits/DSC_0220-2.jpg" style="width:100%">
-    <img alt="dog" src="images/portraits/DSC_0037.jpg" style="width:100%">
-    <img alt="nice outfit" src="images/portraits/DSC_0701.jpg" style="width:100%">
-    <img alt="handsome man" src="images/portraits/DSC_0857.jpg" style="width:100%">
-    <img alt="same handsome man" src="images/portraits/DSC_0314.jpg" style="width:100%">
+    <img alt="artistic portrait" src="/assets/portraits/thumbnails/DSCF8246-2-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSCF8246-2.jpg')">
+    <img alt="mermaid girl" src="/assets/portraits/thumbnails/DSC_0745.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSC_0745.jpg')">
+    <img alt="same professional girl" src="/assets/portraits/thumbnails/DSC_0284.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSC_0284.jpg')">
+    <img alt="handsome man" src="/assets/portraits/thumbnails/DSC_0857.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSC_0857.jpg')">
+    <img alt="same handsome man" src="/assets/portraits/thumbnails/DSC_0314.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSC_0314.jpg')">
+    <img alt="smug" src="/assets/portraits/thumbnails/1000008842.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/1000008842.jpg')">
+    <img alt="portrait style" src="/assets/portraits/thumbnails/DSCF9402-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSCF9402.JPG')">
+    <img alt="professional headshot" src="/assets/portraits/thumbnails/DSCF9551-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSCF9551.JPG')">
+    <img alt="portrait lighting" src="/assets/portraits/thumbnails/DSCF9750-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/portraits/DSCF9750.JPG')">
   </div>
 </div>
   
 <!-- End Page Content -->
 </div>
 
+<!-- Modal/Lightbox -->
+<div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button (click)="closeModal()" class="close-btn">&times;</button>
+    <img [src]="selectedImage" 
+         [style.transform]="getImageTransform()" 
+         [style.transform-origin]="transformOriginX + ' ' + transformOriginY"
+         [class.dragging]="hasMoved && isDragging"
+         [class.draggable]="zoomLevel > 1"
+         class="modal-image" 
+         alt="Full resolution image"
+         (mousedown)="onImageMouseDown($event)"
+         (mousemove)="onImageMouseMove($event)"
+         (mouseup)="onImageMouseUp($event)"
+         (dragstart)="$event.preventDefault()">
+  </div>
+</div>
+
 <!-- Footer -->
-<div id="foot"></div>
 <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
-  <a target="_blank" title="ig" href="https://www.instagram.com/albruh.u/" class="fa fa-instagram w3-hover-opacity"></a>
+  <a target="_blank" title="ig" href="https://www.instagram.com/thephotograbert" class="fa fa-instagram w3-hover-opacity"></a>
   <a target="_blank" title="ln" href="https://www.linkedin.com/in/albert-youssef-5420341ba/" class="fa fa-linkedin w3-hover-opacity"></a>
   <a target="_blank" title="main" href="https://www.albruh.tech" class="fa fa-home w3-hover-opacity"></a>
 </footer>
-
-</body>
-</html>

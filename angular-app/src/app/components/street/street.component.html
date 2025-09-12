@@ -1,51 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Portfolio</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
-<style>
-body,h1 {
-    font-family: "Source Code Pro", monospace;
-}
-#name {
-    letter-spacing: 6px;
-    float: right;
-    padding-left: 10%;
-    padding-right: 8%;
-}
-.w3-row-padding img {
-    margin-bottom: 12px;
-}
-img {
-  border-radius: 5%;
-}
-</style>
-</head>
-<body>
-
 <!-- !PAGE CONTENT! -->
 <div class="w3-content" style="max-width:1500px">
 
 <!-- Header -->
 <header class="w3-panel w3-center w3-opacity" style="padding:1vh 16px">
-
   <h1 id="name">Albert Youssef</h1>
   
   <div class="w3-padding-32">
     <div class="w3-bar w3-border">
-      <a href="index.html" class="w3-bar-item w3-button w3-light-grey">Home</a>
-      <a href="portraits.html" class="w3-bar-item w3-button">Portraits</a>
-      <a href="street.html" class="w3-bar-item w3-button w3-light-grey">Street</a>
-      <a href="products.html" class="w3-bar-item w3-button">Products</a>
-      <a href="extra.html" class="w3-bar-item w3-button w3-light-grey">Extra</a>
-      <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
+      <a routerLink="/" class="w3-bar-item w3-button w3-light-grey">Home</a>
+      <a routerLink="/portraits" class="w3-bar-item w3-button">Portraits</a>
+      <a routerLink="/street" class="w3-bar-item w3-button w3-light-grey">Street</a>
+      <a routerLink="/products" class="w3-bar-item w3-button">Products</a>
+      <a routerLink="/landscape" class="w3-bar-item w3-button w3-light-grey">Landscape</a>
+      <a routerLink="/graduation" class="w3-bar-item w3-button">Graduation</a>
+      <a routerLink="/aesthetics" class="w3-bar-item w3-button w3-light-grey">Aesthetics</a>
+      <a routerLink="/contact" class="w3-bar-item w3-button">Contact</a>
     </div>
   </div>
 </header>
@@ -53,33 +22,61 @@ img {
 <!-- Photo Grid -->
 <div class="w3-row-padding" style="margin-bottom:128px">
   <div class="w3-half">
-    <img alt="tall building" src="images/street/IMG_2570.jpg" style="width:100%">
-    <img alt="surfer" src="images/street/DSC_0387.jpg" style="width:100%">
-    <img alt="passport" src="images/street/IMG_2197.jpg" style="width:100%">
-    <img alt="graffiti" src="images/street/IMG_2207.jpg" style="width:100%">
-    <img alt="surfboards" src="images/street/IMG_0500.jpg" style="width:100%">
-    <img alt="golden gate" src="images/street/DSC_0504.jpg" style="width:100%">
+    <img alt="tall building" src="/assets/street/thumbnails/IMG_2570.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/IMG_2570.jpg')">
+    <img alt="surfer" src="/assets/street/thumbnails/DSC_0387.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSC_0387.jpg')">
+    <img alt="passport" src="/assets/street/thumbnails/IMG_2197.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/IMG_2197.jpg')">
+    <img alt="street photography" src="/assets/street/thumbnails/DSCF0268-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF0268.JPG')">
+    <img alt="golden gate" src="/assets/street/thumbnails/DSC_0504.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSC_0504.jpg')">
+    <img alt="street moment" src="/assets/street/thumbnails/DSCF0347-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF0347.JPG')">
+    <img alt="city life" src="/assets/street/thumbnails/DSCF0348-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF0348.JPG')">
+    <img alt="urban photography" src="/assets/street/thumbnails/DSCF0372-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF0372.JPG')">
+    <img alt="street scene" src="/assets/street/thumbnails/DSCF0393-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF0393.JPG')">
+    <img alt="candid moment" src="/assets/street/thumbnails/DSCF0394-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF0394.JPG')">
+    <img alt="street art" src="/assets/street/thumbnails/DSCF0412-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF0412.JPG')">
+    <img alt="urban landscape" src="/assets/street/thumbnails/DSCF8925-2-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF8925-2.jpg')">
+    <img alt="windows" src="/assets/street/thumbnails/DSC_0384.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSC_0384.jpg')">
   </div>
   <div id="mid"> </div>
   <div class="w3-half">
-    <img alt="windows" src="images/street/DSC_0384.jpg" style="width:100%">
-    <img alt="san fran street" src="images/street/DSC_0434.jpg" style="width:100%">
-    <img alt="creepy house" src="images/street/DSC_0108.jpg" style="width:100%">
-    <img alt="metro" src="images/street/DSC_0416.jpg" style="width:100%">
-    <img alt="trolley" src="images/street/DSC_0370.jpg" style="width:100%">
+    <img alt="san fran street" src="/assets/street/thumbnails/DSC_0434.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSC_0434.jpg')">
+    <img alt="trolley" src="/assets/street/thumbnails/DSC_0370.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSC_0370.jpg')">
+    <img alt="street photography" src="/assets/street/thumbnails/DSCF8974-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF8974.JPG')">
+    <img alt="urban moment" src="/assets/street/thumbnails/DSCF8991-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF8991.JPG')">
+    <img alt="city street" src="/assets/street/thumbnails/DSCF9023-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF9023.JPG')">
+    <img alt="street scene" src="/assets/street/thumbnails/DSCF9042-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF9042.jpg')">
+    <img alt="urban life" src="/assets/street/thumbnails/DSCF9684-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF9684.JPG')">
+    <img alt="street moment" src="/assets/street/thumbnails/DSCF9687-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF9687.JPG')">
+    <img alt="candid photography" src="/assets/street/thumbnails/DSCF9837-2-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF9837-2.jpg')">
+    <img alt="street art" src="/assets/street/thumbnails/DSCF9885-2-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF9885-2.jpg')">
+    <img alt="urban scene" src="/assets/street/thumbnails/DSCF0299-2-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF0299-2.jpg')">
+    <img alt="street scene" src="/assets/street/thumbnails/DSCF9648-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/street/DSCF9648.JPG')">
   </div>
 </div>
   
 <!-- End Page Content -->
 </div>
 
+<!-- Modal/Lightbox -->
+<div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button (click)="closeModal()" class="close-btn">&times;</button>
+    <img [src]="selectedImage" 
+         [style.transform]="getImageTransform()" 
+         [style.transform-origin]="transformOriginX + ' ' + transformOriginY"
+         [class.dragging]="hasMoved && isDragging"
+         [class.draggable]="zoomLevel > 1"
+         class="modal-image" 
+         alt="Full resolution image"
+         (mousedown)="onImageMouseDown($event)"
+         (mousemove)="onImageMouseMove($event)"
+         (mouseup)="onImageMouseUp($event)"
+         (dragstart)="$event.preventDefault()">
+  </div>
+</div>
+
 <!-- Footer -->
-<div id="foot"></div>
 <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
-  <a target="_blank" title="ig" href="https://www.instagram.com/albruh.u/" class="fa fa-instagram w3-hover-opacity"></a>
+  <a target="_blank" title="ig" href="https://www.instagram.com/thephotograbert" class="fa fa-instagram w3-hover-opacity"></a>
   <a target="_blank" title="ln" href="https://www.linkedin.com/in/albert-youssef-5420341ba/" class="fa fa-linkedin w3-hover-opacity"></a>
   <a target="_blank" title="main" href="https://www.albruh.tech" class="fa fa-home w3-hover-opacity"></a>
 </footer>
-
-</body>
-</html>

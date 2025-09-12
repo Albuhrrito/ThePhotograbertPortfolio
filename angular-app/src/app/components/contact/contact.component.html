@@ -1,103 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Portfolio</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+<!-- !PAGE CONTENT! -->
+<div class="w3-content" style="max-width:1500px">
 
-body,h1 {
-  font-family: "Source Code Pro", monospace;
-}
+<!-- Header -->
+<header class="w3-panel w3-center w3-opacity" style="padding:1vh 16px">
+  <h1 id="name">Albert Youssef</h1>
+  <p id="quote">"What I like about photographs is that they capture a moment that's gone forever, impossible to reproduce." – Karl Lagerfeld</p>
+  
+  <div class="w3-padding-32">
+    <div class="w3-bar w3-border">
+      <a routerLink="/" class="w3-bar-item w3-button w3-light-grey">Home</a>
+      <a routerLink="/portraits" class="w3-bar-item w3-button">Portraits</a>
+      <a routerLink="/street" class="w3-bar-item w3-button w3-light-grey">Street</a>
+      <a routerLink="/products" class="w3-bar-item w3-button">Products</a>
+      <a routerLink="/landscape" class="w3-bar-item w3-button w3-light-grey">Landscape</a>
+      <a routerLink="/graduation" class="w3-bar-item w3-button">Graduation</a>
+      <a routerLink="/aesthetics" class="w3-bar-item w3-button w3-light-grey">Aesthetics</a>
+      <a routerLink="/contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+  </div>
+</header>
 
-#name {
-  letter-spacing: 6px;
-  padding-left: 10%;
-  padding-right: 8%;
-}
-.w3-row-padding img {
-  margin-bottom: 12px;
-}
-
-#quote {
-  color: darkslategray;
-}
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
-
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-</style>
-</head>
-<body>
-    <header class="w3-panel w3-center w3-opacity" style="padding:1vh 16px">
-        <h1 id="name">Albert Youssef</h1>
-        <p id="quote">“What I like about photographs is that they capture a moment that's gone forever, impossible to reproduce.” - Karl Lagerfeld</p>
-        <div class="w3-padding-32">
-          <div class="w3-bar w3-border">
-            <a href="index.html" class="w3-bar-item w3-button w3-light-grey">Home</a>
-            <a href="portraits.html" class="w3-bar-item w3-button">Portraits</a>
-            <a href="street.html" class="w3-bar-item w3-button w3-light-grey">Street</a>
-            <a href="products.html" class="w3-bar-item w3-button">Products</a>
-            <a href="extra.html" class="w3-bar-item w3-button w3-light-grey">Extra</a>
-            <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
-          </div>
+<!-- Contact Form -->
+<div class="form-container" style="margin-bottom:128px">
+  <h2 class="form-title">Get In Touch</h2>
+  <p class="form-subtitle">I'd love to hear about your photography needs. Send me a message and I'll get back to you soon!</p>
+  
+  <!-- Success/Error Messages -->
+  <div *ngIf="submitMessage" class="message-container" 
+       [class.success-message]="submitMessageType === 'success'"
+       [class.error-message]="submitMessageType === 'error'">
+    {{ submitMessage }}
+  </div>
+  
+  <!-- Contact Form -->
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+    
+    <!-- Name Row -->
+    <div class="form-row">
+      <div class="form-group half-width">
+        <label for="firstName">First Name *</label>
+        <input 
+          type="text" 
+          id="firstName" 
+          formControlName="firstName"
+          [class.invalid]="isFieldInvalid('firstName')"
+          placeholder="Your first name">
+        <div *ngIf="isFieldInvalid('firstName')" class="error-text">
+          {{ getFieldError('firstName') }}
         </div>
-      </header>
-
-<div class="container">
-  <form action="index.html">
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-    <label for="country">Country</label>
-    <select id="country" name="country">
-      <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
-    </select>
-
-    <label for="subject">Subject</label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-
-    <input type="submit" value="Submit">
+      </div>
+      
+      <div class="form-group half-width">
+        <label for="lastName">Last Name *</label>
+        <input 
+          type="text" 
+          id="lastName" 
+          formControlName="lastName"
+          [class.invalid]="isFieldInvalid('lastName')"
+          placeholder="Your last name">
+        <div *ngIf="isFieldInvalid('lastName')" class="error-text">
+          {{ getFieldError('lastName') }}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email Address *</label>
+      <input 
+        type="email" 
+        id="email" 
+        formControlName="email"
+        [class.invalid]="isFieldInvalid('email')"
+        placeholder="your.email@example.com">
+      <div *ngIf="isFieldInvalid('email')" class="error-text">
+        {{ getFieldError('email') }}
+      </div>
+    </div>
+    
+    <!-- Subject -->
+    <div class="form-group">
+      <label for="subject">Subject *</label>
+      <input 
+        type="text" 
+        id="subject" 
+        formControlName="subject"
+        [class.invalid]="isFieldInvalid('subject')"
+        placeholder="What's this about?">
+      <div *ngIf="isFieldInvalid('subject')" class="error-text">
+        {{ getFieldError('subject') }}
+      </div>
+    </div>
+    
+    <!-- Message -->
+    <div class="form-group">
+      <label for="message">Message *</label>
+      <textarea 
+        id="message" 
+        formControlName="message"
+        [class.invalid]="isFieldInvalid('message')"
+        placeholder="Tell me about your photography needs, event details, or any questions you have..."
+        rows="6"></textarea>
+      <div *ngIf="isFieldInvalid('message')" class="error-text">
+        {{ getFieldError('message') }}
+      </div>
+    </div>
+    
+    <!-- Submit Button -->
+    <div class="form-group">
+      <button 
+        type="submit" 
+        class="submit-btn"
+        [disabled]="isSubmitting">
+        <span *ngIf="!isSubmitting">Send Message</span>
+        <span *ngIf="isSubmitting">Sending...</span>
+      </button>
+    </div>
+    
   </form>
+  
+  <!-- Contact Info -->
+  <div class="contact-info">
+    <p><strong>Prefer to reach out directly?</strong></p>
+    <p>You can also find me on social media using the links below.</p>
+  </div>
+  
 </div>
 
-</body>
-</html>
+<!-- End Page Content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
+  <a target="_blank" title="ig" href="https://www.instagram.com/thephotograbert" class="fa fa-instagram w3-hover-opacity"></a>
+  <a target="_blank" title="ln" href="https://www.linkedin.com/in/albert-youssef-5420341ba/" class="fa fa-linkedin w3-hover-opacity"></a>
+  <a target="_blank" title="main" href="https://www.albruh.tech" class="fa fa-home w3-hover-opacity"></a>
+</footer>
