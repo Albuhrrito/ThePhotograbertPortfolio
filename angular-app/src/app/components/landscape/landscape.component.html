@@ -1,0 +1,68 @@
+<!-- !PAGE CONTENT! -->
+<div class="w3-content" style="max-width:1500px">
+
+<!-- Header -->
+<header class="w3-panel w3-center w3-opacity" style="padding:1vh 16px">
+  <h1 id="name">Albert Youssef</h1>
+  
+  <div class="w3-padding-32">
+    <div class="w3-bar w3-border">
+      <a routerLink="/" class="w3-bar-item w3-button w3-light-grey">Home</a>
+      <a routerLink="/portraits" class="w3-bar-item w3-button">Portraits</a>
+      <a routerLink="/street" class="w3-bar-item w3-button w3-light-grey">Street</a>
+      <a routerLink="/products" class="w3-bar-item w3-button">Products</a>
+      <a routerLink="/landscape" class="w3-bar-item w3-button w3-light-grey">Landscape</a>
+      <a routerLink="/graduation" class="w3-bar-item w3-button">Graduation</a>
+      <a routerLink="/aesthetics" class="w3-bar-item w3-button w3-light-grey">Aesthetics</a>
+      <a routerLink="/contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- Photo Grid -->
+<div class="w3-row-padding" style="margin-bottom:128px">
+  <div class="w3-half">
+    <img alt="landscape photography" src="/assets/landscape/thumbnails/DSCF0241-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSCF0241.JPG')">
+    <img alt="nature scene" src="/assets/landscape/thumbnails/DSCF0259-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSCF0259.JPG')">
+    <img alt="scenic landscape" src="/assets/landscape/thumbnails/DSCF8827-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSCF8827.jpg')">
+    <img alt="mountain view" src="/assets/landscape/thumbnails/DSCF9128-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSCF9128.JPG')">
+    <img alt="natural beauty" src="/assets/landscape/thumbnails/DSCF9205-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSCF9205.jpg')">
+    <img alt="outdoor photography" src="/assets/landscape/thumbnails/DSCF9532-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSCF9532.JPG')">
+  </div>
+  <div id="mid"> </div>
+  <div class="w3-half">
+    <img alt="landscape vista" src="/assets/landscape/thumbnails/DSCF9543-2-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSCF9543-2.jpg')">
+    <img alt="scenic view" src="/assets/landscape/thumbnails/DSCF9726-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSCF9726.JPG')">
+    <img alt="natural landscape" src="/assets/landscape/thumbnails/DSCF9764-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSCF9764.JPG')">
+    <img alt="panoramic view" src="/assets/landscape/thumbnails/DSCF9796-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSCF9796.JPG')">
+    <img alt="landscape scene" src="/assets/landscape/thumbnails/DSC_0019.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/landscape/DSC_0019.jpg')">
+  </div>
+</div>
+  
+<!-- End Page Content -->
+</div>
+
+<!-- Modal/Lightbox -->
+<div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button (click)="closeModal()" class="close-btn">&times;</button>
+    <img [src]="selectedImage" 
+         [style.transform]="getImageTransform()" 
+         [style.transform-origin]="transformOriginX + ' ' + transformOriginY"
+         [class.dragging]="hasMoved && isDragging"
+         [class.draggable]="zoomLevel > 1"
+         class="modal-image" 
+         alt="Full resolution image"
+         (mousedown)="onImageMouseDown($event)"
+         (mousemove)="onImageMouseMove($event)"
+         (mouseup)="onImageMouseUp($event)"
+         (dragstart)="$event.preventDefault()">
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
+  <a target="_blank" title="ig" href="https://www.instagram.com/thephotograbert" class="fa fa-instagram w3-hover-opacity"></a>
+  <a target="_blank" title="ln" href="https://www.linkedin.com/in/albert-youssef-5420341ba/" class="fa fa-linkedin w3-hover-opacity"></a>
+  <a target="_blank" title="main" href="https://www.albruh.tech" class="fa fa-home w3-hover-opacity"></a>
+</footer>

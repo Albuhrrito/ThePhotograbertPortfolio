@@ -1,0 +1,70 @@
+<!-- !PAGE CONTENT! -->
+<div class="w3-content" style="max-width:1500px">
+
+<!-- Header -->
+<header class="w3-panel w3-center w3-opacity" style="padding:1vh 16px">
+  <h1 id="name">Albert Youssef</h1>
+  
+  <div class="w3-padding-32">
+    <div class="w3-bar w3-border">
+      <a routerLink="/" class="w3-bar-item w3-button w3-light-grey">Home</a>
+      <a routerLink="/portraits" class="w3-bar-item w3-button">Portraits</a>
+      <a routerLink="/street" class="w3-bar-item w3-button w3-light-grey">Street</a>
+      <a routerLink="/products" class="w3-bar-item w3-button">Products</a>
+      <a routerLink="/landscape" class="w3-bar-item w3-button w3-light-grey">Landscape</a>
+      <a routerLink="/graduation" class="w3-bar-item w3-button">Graduation</a>
+      <a routerLink="/aesthetics" class="w3-bar-item w3-button w3-light-grey">Aesthetics</a>
+      <a routerLink="/contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- Photo Grid -->
+<div class="w3-row-padding" style="margin-bottom:128px">
+  <div class="w3-half">
+    <img alt="graduation photography" src="/assets/graduation/thumbnails/_PK_0034-2-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_0034-2.jpg')">
+    <img alt="graduate portrait" src="/assets/graduation/thumbnails/_PK_0167-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_0167.jpg')">
+    <img alt="graduation ceremony" src="/assets/graduation/thumbnails/_PK_0234-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_0234.jpg')">
+    <img alt="graduation moment" src="/assets/graduation/thumbnails/_PK_0297-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_0297.jpg')">
+    <img alt="commencement photos" src="/assets/graduation/thumbnails/_PK_0353-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_0353.jpg')">
+    <img alt="graduation celebration" src="/assets/graduation/thumbnails/_PK_0399-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_0399.jpg')">
+    <img alt="diploma ceremony" src="/assets/graduation/thumbnails/_PK_0517-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_0517.jpg')">
+  </div>
+  <div id="mid"> </div>
+  <div class="w3-half">
+    <img alt="graduation day" src="/assets/graduation/thumbnails/_PK_0796-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_0796.jpg')">
+    <img alt="academic achievement" src="/assets/graduation/thumbnails/_PK_0798-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_0798.jpg')">
+    <img alt="graduation session" src="/assets/graduation/thumbnails/_PK_0864-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_0864.jpg')">
+    <img alt="milestone photography" src="/assets/graduation/thumbnails/_PK_1243-2-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_1243-2.jpg')">
+    <img alt="graduation memories" src="/assets/graduation/thumbnails/_PK_1467-min.jpg" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/_PK_1467.jpg')">
+    <img alt="commencement day" src="/assets/graduation/thumbnails/DSCF9006-min.JPG" style="width:100%; cursor:pointer;" (click)="openModal('/assets/graduation/DSCF9006.JPG')">
+  </div>
+</div>
+  
+<!-- End Page Content -->
+</div>
+
+<!-- Modal/Lightbox -->
+<div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button (click)="closeModal()" class="close-btn">&times;</button>
+    <img [src]="selectedImage" 
+         [style.transform]="getImageTransform()" 
+         [style.transform-origin]="transformOriginX + ' ' + transformOriginY"
+         [class.dragging]="hasMoved && isDragging"
+         [class.draggable]="zoomLevel > 1"
+         class="modal-image" 
+         alt="Full resolution image"
+         (mousedown)="onImageMouseDown($event)"
+         (mousemove)="onImageMouseMove($event)"
+         (mouseup)="onImageMouseUp($event)"
+         (dragstart)="$event.preventDefault()">
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
+  <a target="_blank" title="ig" href="https://www.instagram.com/thephotograbert" class="fa fa-instagram w3-hover-opacity"></a>
+  <a target="_blank" title="ln" href="https://www.linkedin.com/in/albert-youssef-5420341ba/" class="fa fa-linkedin w3-hover-opacity"></a>
+  <a target="_blank" title="main" href="https://www.albruh.tech" class="fa fa-home w3-hover-opacity"></a>
+</footer>
