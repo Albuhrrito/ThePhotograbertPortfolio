@@ -7,7 +7,8 @@
       "Bash(cp:*)",
       "Bash(find:*)",
       "Bash(ng build:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(mv:*)"
     ],
     "deny": [],
     "ask": []
