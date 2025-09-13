@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   private setRandomBackground(): void {
     const randomIndex = Math.floor(Math.random() * this.backgroundImages.length);
     const selectedImage = this.backgroundImages[randomIndex];
-    this.backgroundImage = `/assets/home/${selectedImage}`;
+    this.backgroundImage = `assets/home/${selectedImage}`;
     
     // Debug logging
     console.log('Random index:', randomIndex);
