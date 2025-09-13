@@ -6,7 +6,8 @@
       "Bash(npm run build:*)",
       "Bash(cp:*)",
       "Bash(find:*)",
-      "Bash(ng build:*)"
+      "Bash(ng build:*)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []
