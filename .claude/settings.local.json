@@ -8,7 +8,9 @@
       "Bash(find:*)",
       "Bash(ng build:*)",
       "Bash(rm:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(netstat:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": []
