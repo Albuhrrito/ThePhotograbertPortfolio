@@ -10,7 +10,8 @@
       "Bash(rm:*)",
       "Bash(mv:*)",
       "Bash(netstat:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []
