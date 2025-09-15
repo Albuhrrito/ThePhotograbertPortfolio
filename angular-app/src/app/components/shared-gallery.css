@@ -1,0 +1,164 @@
+/* Shared Gallery Styles with Dark Mode Support */
+
+/* Ensure full page coverage */
+html, body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  transition: all 0.3s ease;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page content container */
+.w3-content {
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
+  min-height: 100vh;
+}
+
+/* Header styling */
+header {
+  background-color: var(--bg-overlay);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+header h1#name {
+  color: var(--text-primary);
+  font-family: "Source Code Pro", monospace;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Navigation bar styling - Override W3.CSS with stronger specificity */
+.navbar-container.w3-bar {
+  background-color: var(--bg-navbar) !important;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.navbar-container .w3-bar-item,
+.navbar-container .w3-bar-item.w3-button {
+  transition: all 0.3s ease !important;
+  font-weight: 500 !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+  background-color: transparent !important;
+}
+
+.navbar-container .w3-bar-item:hover,
+.navbar-container .w3-bar-item.w3-button:hover {
+  background-color: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
+  transform: translateY(-1px);
+}
+
+.navbar-container .w3-light-grey,
+.navbar-container .w3-bar-item.w3-light-grey {
+  background-color: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Modal/Lightbox styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="dark"] .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+  cursor: zoom-in;
+}
+
+.modal-image.draggable {
+  cursor: grab;
+}
+
+.modal-image.dragging {
+  cursor: grabbing;
+}
+
+.close-btn {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: var(--toggle-bg);
+  color: var(--toggle-text);
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: var(--hover-bg);
+  transform: scale(1.1);
+}
+
+/* Footer styling */
+footer {
+  background-color: var(--bg-footer) !important;
+  transition: background-color 0.3s ease;
+}
+
+footer .fa {
+  margin: 0 15px;
+  padding: 12px;
+  font-size: 20px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+footer .fa:hover {
+  background-color: var(--border-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Image grid responsive adjustments */
+.w3-row-padding img {
+  margin-bottom: 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.w3-row-padding img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--shadow-color);
+}

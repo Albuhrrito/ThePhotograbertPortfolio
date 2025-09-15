@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 
 @Component({
   selector: 'app-products',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, DarkModeToggleComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })

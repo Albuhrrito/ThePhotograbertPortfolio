@@ -11,7 +11,8 @@
       "Bash(mv:*)",
       "Bash(netstat:*)",
       "Bash(git checkout:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(npm run serve:*)"
     ],
     "deny": [],
     "ask": []

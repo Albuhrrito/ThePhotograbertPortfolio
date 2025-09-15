@@ -15,11 +15,12 @@
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  /* Fallback background color for debugging */
-  background-color: #f0f0f0;
+  /* Fallback background color uses theme variable */
+  background-color: var(--bg-primary);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
 /* Overlay for better text visibility */
@@ -29,11 +30,12 @@
   width: 100%;
   max-width: 1200px;
   padding: 40px 20px;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: var(--bg-overlay);
   backdrop-filter: blur(2px);
   border-radius: 15px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px var(--shadow-color);
   margin: 40px auto;
+  transition: all 0.3s ease;
 }
 
 /* Name styling */
@@ -42,45 +44,55 @@
   text-align: center;
   margin: 0 auto 20px auto;
   padding: 0;
-  color: #333;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: var(--text-primary);
+  text-shadow: 2px 2px 4px var(--text-shadow);
   font-size: 2.5rem;
   font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 /* Quote styling */
 #quote {
-  color: #555;
+  color: var(--text-secondary);
   font-style: italic;
   text-align: center;
   margin: 20px auto;
   padding: 0 20px;
   line-height: 1.6;
   font-size: 1.1rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 2px var(--text-shadow);
+  transition: color 0.3s ease;
 }
 
-/* Navigation bar styling */
-.navbar-container {
-  background-color: rgba(255, 255, 255, 0.95) !important;
+/* Navigation bar styling - Override W3.CSS with stronger specificity */
+.navbar-container.w3-bar {
+  background-color: var(--bg-navbar) !important;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-.navbar-container .w3-bar-item {
+  box-shadow: 0 4px 16px var(--border-color);
   transition: all 0.3s ease;
-  font-weight: 500;
-  border: none !important;
 }
 
-.navbar-container .w3-bar-item:hover {
-  background-color: rgba(0, 0, 0, 0.1) !important;
+.navbar-container .w3-bar-item,
+.navbar-container .w3-bar-item.w3-button {
+  transition: all 0.3s ease !important;
+  font-weight: 500 !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+  background-color: transparent !important;
+}
+
+.navbar-container .w3-bar-item:hover,
+.navbar-container .w3-bar-item.w3-button:hover {
+  background-color: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
   transform: translateY(-1px);
 }
 
-.navbar-container .w3-light-grey {
-  background-color: rgba(0, 0, 0, 0.1) !important;
+.navbar-container .w3-light-grey,
+.navbar-container .w3-bar-item.w3-light-grey {
+  background-color: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
 }
 
 /* Footer styling */
@@ -90,13 +102,14 @@ footer .fa {
   font-size: 20px;
   border-radius: 50%;
   transition: all 0.3s ease;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
 }
 
 footer .fa:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--border-color);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 /* Responsive design */

@@ -1,3 +1,5 @@
+@import '../shared-gallery.css';
+
 /* Host styling */
 :host {
   display: block;

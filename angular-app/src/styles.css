@@ -4,6 +4,129 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
 
-body, h1 {
+/* CSS Variables for Light/Dark Theme */
+:root {
+  /* Light theme variables (default) */
+  --bg-primary: #f0f0f0;
+  --bg-overlay: rgba(255, 255, 255, 0.85);
+  --bg-navbar: rgba(255, 255, 255, 0.95);
+  --bg-footer: #f5f5f5;
+  --text-primary: #333;
+  --text-secondary: #555;
+  --text-shadow: rgba(0, 0, 0, 0.3);
+  --border-color: rgba(0, 0, 0, 0.2);
+  --hover-bg: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --toggle-bg: #2c3e50;
+  --toggle-text: white;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+  --bg-primary: #1a1d2e;
+  --bg-overlay: rgba(26, 29, 46, 0.9);
+  --bg-navbar: rgba(44, 62, 80, 0.95);
+  --bg-footer: #2c3e50;
+  --text-primary: #e8e8e8;
+  --text-secondary: #b8b8b8;
+  --text-shadow: rgba(0, 0, 0, 0.8);
+  --border-color: rgba(255, 255, 255, 0.2);
+  --hover-bg: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --toggle-bg: #f39c12;
+  --toggle-text: #2c3e50;
+}
+
+html, body {
     font-family: "Source Code Pro", monospace;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+h1 {
+    font-family: "Source Code Pro", monospace;
+}
+
+/* Nuclear option - Force override W3.CSS navbar styling */
+[data-theme="dark"] .w3-bar .w3-bar-item,
+[data-theme="dark"] .w3-bar .w3-button,
+[data-theme="dark"] .w3-bar a.w3-bar-item,
+[data-theme="dark"] .w3-bar a.w3-button,
+[data-theme="dark"] .navbar-container .w3-bar-item,
+[data-theme="dark"] .navbar-container .w3-button,
+[data-theme="dark"] .navbar-container a.w3-bar-item,
+[data-theme="dark"] .navbar-container a.w3-button,
+[data-theme="dark"] .navbar-container.w3-bar .w3-bar-item,
+[data-theme="dark"] .navbar-container.w3-bar .w3-button,
+[data-theme="dark"] .navbar-container.w3-bar a.w3-bar-item,
+[data-theme="dark"] .navbar-container.w3-bar a.w3-button {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .w3-bar .w3-bar-item:hover,
+[data-theme="dark"] .w3-bar .w3-button:hover,
+[data-theme="dark"] .w3-bar a.w3-bar-item:hover,
+[data-theme="dark"] .w3-bar a.w3-button:hover,
+[data-theme="dark"] .navbar-container .w3-bar-item:hover,
+[data-theme="dark"] .navbar-container .w3-button:hover,
+[data-theme="dark"] .navbar-container a.w3-bar-item:hover,
+[data-theme="dark"] .navbar-container a.w3-button:hover,
+[data-theme="dark"] .navbar-container.w3-bar .w3-bar-item:hover,
+[data-theme="dark"] .navbar-container.w3-bar .w3-button:hover,
+[data-theme="dark"] .navbar-container.w3-bar a.w3-bar-item:hover,
+[data-theme="dark"] .navbar-container.w3-bar a.w3-button:hover {
+  background-color: var(--hover-bg) !important;
+  background: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .w3-bar .w3-light-grey,
+[data-theme="dark"] .navbar-container .w3-light-grey,
+[data-theme="dark"] .navbar-container.w3-bar .w3-light-grey {
+  background-color: var(--hover-bg) !important;
+  background: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: var(--toggle-bg);
+  color: var(--toggle-text);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-mode-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--shadow-color);
+}
+
+@media (max-width: 768px) {
+  .dark-mode-toggle {
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
 }

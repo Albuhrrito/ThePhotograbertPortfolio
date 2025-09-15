@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, DarkModeToggleComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -53,7 +54,7 @@ export class HomeComponent implements OnInit {
       'background-position': 'center center',
       'background-attachment': 'fixed',
       'background-repeat': 'no-repeat',
-      'background-color': '#f0f0f0' // Fallback color
+      'background-color': 'var(--bg-primary)' // Fallback color uses theme variable
     };
     
     console.log('Applied background style:', style);
