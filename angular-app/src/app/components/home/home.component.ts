@@ -11,14 +11,14 @@ import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.co
 })
 export class HomeComponent implements OnInit {
   backgroundImage: string = '';
-  
+
   // Array of background images - randomly selected on each page load
   private backgroundImages: string[] = [
-    'DSC_0188-2.jpg',
-    'DSCF9175-2.jpg',
-    'DSCF9340-2.jpg',
-    'DSCF9467-2.jpg',
-    'DSCF9747-2.jpg'
+    'background-1.jpg',
+    'background-2.jpg',
+    'background-3.jpg',
+    'background-4.jpg',
+    'background-5.jpg'
   ];
 
   ngOnInit(): void {
@@ -28,13 +28,13 @@ export class HomeComponent implements OnInit {
   private setRandomBackground(): void {
     const randomIndex = Math.floor(Math.random() * this.backgroundImages.length);
     const selectedImage = this.backgroundImages[randomIndex];
-    this.backgroundImage = `assets/home/${selectedImage}`;
-    
+    this.backgroundImage = `assets/home/optimized/${selectedImage}`;
+
     // Debug logging
     console.log('Random index:', randomIndex);
     console.log('Selected image filename:', selectedImage);
     console.log('Full image path:', this.backgroundImage);
-    
+
     // Also try to set CSS custom property as backup
     if (typeof document !== 'undefined') {
       document.documentElement.style.setProperty('--background-image', `url('${this.backgroundImage}')`);
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
       console.log('No background image set yet');
       return {};
     }
-    
+
     const style = {
       'background-image': `url('${this.backgroundImage}')`,
       'background-size': 'cover',
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
       'background-repeat': 'no-repeat',
       'background-color': 'var(--bg-primary)' // Fallback color uses theme variable
     };
-    
+
     console.log('Applied background style:', style);
     return style;
   }
