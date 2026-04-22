@@ -2,7 +2,7 @@
 
 Personal photography portfolio for **Albert "The Photograbert" Youssef**, built as a single-page Angular 19 application with SSR prerendering and a custom Python image-optimization pipeline.
 
-**Live site:** <https://albuhrrito.github.io/ThePhotograbertPortfolio/>
+**Live site:** <https://photograbert.com>
 
 ---
 
