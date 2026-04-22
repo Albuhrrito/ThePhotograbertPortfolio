@@ -43,7 +43,7 @@ import { RouterLink } from '@angular/router';
   styles: [`
     .footer {
       margin-top: var(--s-10);
-      padding: var(--s-9) 0 var(--s-5);
+      padding: var(--s-9) 0 calc(var(--s-5) + var(--safe-bottom));
       background: var(--c-bg-alt);
       border-top: 1px solid var(--c-line);
     }
@@ -71,7 +71,8 @@ import { RouterLink } from '@angular/router';
     .footer__links a {
       display: inline-flex; align-items: center; gap: var(--s-3);
       color: var(--c-ink-soft);
-      padding: 4px 0;
+      /* ≥44px tap target on touch via vertical padding. */
+      padding: 10px 0;
     }
     .footer__links a:hover { color: var(--c-accent); }
 
@@ -81,9 +82,14 @@ import { RouterLink } from '@angular/router';
       padding-top: var(--s-4);
       border-top: 1px solid var(--c-line);
       color: var(--c-ink-mute);
+      gap: var(--s-3);
+      flex-wrap: wrap;
     }
 
     @media (max-width: 640px) {
+      .footer { margin-top: var(--s-8); padding-top: var(--s-7); }
+      .footer__inner { gap: var(--s-5); margin-bottom: var(--s-5); }
+      .footer__tag { font-size: 1.25rem; }
       .footer__meta { flex-direction: column; gap: var(--s-2); }
     }
   `],

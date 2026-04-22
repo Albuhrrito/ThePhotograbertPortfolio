@@ -3,13 +3,16 @@
 /* ─── Hero ─────────────────────────────────────────────────────────────── */
 .hero {
   position: relative;
+  /* vh first for older browsers, dvh second for modern mobile browsers that
+     account for address-bar chrome. */
   height: 100vh;
-  min-height: 640px;
+  height: 100dvh;
+  min-height: 560px;
   width: 100%;
   overflow: hidden;
   background: #0d0d0d;
   color: #ebe4d7;
-  margin-top: calc(-1 * var(--nav-h));  /* full-bleed under nav */
+  margin-top: calc(-1 * (var(--nav-h) + var(--safe-top)));  /* full-bleed under nav */
 }
 
 .hero__slides {
@@ -71,7 +74,7 @@
   );
   display: flex;
   align-items: flex-end;
-  padding-bottom: var(--s-10);
+  padding-bottom: calc(var(--s-10) + var(--safe-bottom));
 }
 .hero__content {
   max-width: 720px;
@@ -155,26 +158,38 @@
   color: #0d0d0d;
 }
 
-/* Hero pager dots */
+/* Hero pager dots — 44×44 tap target, thin visual line inside */
 .hero__pager {
   position: absolute;
-  bottom: var(--s-6);
-  right: var(--gutter);
+  bottom: calc(var(--s-6) + var(--safe-bottom));
+  right: max(var(--gutter), var(--safe-right));
   display: flex;
-  gap: 10px;
+  gap: 6px;
+  z-index: 3;
 }
 .hero__dot {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  position: relative;
+}
+.hero__dot::before {
+  content: '';
+  display: block;
   width: 28px;
   height: 1px;
   background: rgba(235, 228, 215, 0.35);
   transition: background-color var(--t-med), transform var(--t-med);
   transform-origin: center;
 }
-.hero__dot.is-active {
+.hero__dot.is-active::before {
   background: #fff;
   transform: scaleY(2);
 }
-.hero__dot:hover { background: rgba(235, 228, 215, 0.7); }
+.hero__dot:hover::before { background: rgba(235, 228, 215, 0.7); }
 
 /* Scroll hint */
 .hero__scroll-hint {
@@ -205,9 +220,24 @@
 }
 
 @media (max-width: 900px) {
-  .hero__overlay { padding-bottom: var(--s-9); padding-top: var(--s-10); }
-  .hero__pager { bottom: var(--s-4); right: var(--s-4); }
+  .hero__overlay {
+    padding-bottom: calc(var(--s-8) + var(--safe-bottom));
+    padding-top: var(--s-10);
+  }
+  .hero__pager {
+    bottom: calc(var(--s-2) + var(--safe-bottom));
+    right: max(var(--s-2), var(--safe-right));
+  }
   .hero__scroll-hint { display: none; }
+  .hero__ctas { gap: var(--s-2); }
+  .hero__ctas .btn { flex: 1 0 auto; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .hero { min-height: 520px; }
+  .hero__title { line-height: 1; }
+  .hero__tagline { font-size: 0.95rem; }
+  .hero__ctas .btn { padding: 11px 18px; font-size: 0.85rem; }
 }
 
 /* ─── Categories ──────────────────────────────────────────────────────────*/
@@ -271,10 +301,17 @@
   height: 100%;
   aspect-ratio: unset !important;
 }
-.cat-card__link:hover .cat-card__image app-photo {
-  transform: scale(1.04);
+/* Desktop-only hover effects (touch devices skip them to avoid sticky states). */
+@media (hover: hover) {
+  .cat-card__link:hover .cat-card__image app-photo {
+    transform: scale(1.04);
+  }
+  .cat-card__link:hover .viewfinder-corners { opacity: 1; }
 }
-.cat-card__link:hover .viewfinder-corners { opacity: 1; }
+/* Touch devices: always show viewfinder corners subtly so the motif isn't lost. */
+@media (hover: none) {
+  .cat-card .viewfinder-corners { opacity: 0.5; }
+}
 
 .cat-card__info {
   display: flex;
@@ -306,7 +343,9 @@
   margin-top: var(--s-2);
   transition: gap var(--t-med);
 }
-.cat-card__link:hover .cat-card__cta { gap: 14px; color: var(--c-accent-hover); }
+@media (hover: hover) {
+  .cat-card__link:hover .cat-card__cta { gap: 14px; color: var(--c-accent-hover); }
+}
 
 /* ─── About teaser ────────────────────────────────────────────────────────*/
 .about-teaser {
@@ -314,7 +353,7 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--s-8);
   align-items: center;
-  padding: var(--s-10) 0;
+  padding: var(--s-9) 0;
 }
 
 .about-teaser__image {
@@ -348,5 +387,13 @@
 }
 
 @media (max-width: 800px) {
-  .about-teaser { grid-template-columns: 1fr; }
+  .about-teaser {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+    padding: var(--s-8) 0;
+  }
+  .about-teaser__image { aspect-ratio: 4 / 3; max-height: 480px; }
+  .categories { padding: var(--s-8) 0 var(--s-7); }
+  .section-head { margin-bottom: var(--s-6); }
+  .cat-grid { gap: var(--s-5) var(--s-4); }
 }

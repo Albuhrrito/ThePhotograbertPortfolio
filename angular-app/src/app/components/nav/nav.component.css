@@ -11,7 +11,8 @@
 
 .nav {
   width: 100%;
-  height: var(--nav-h);
+  /* Extend under the iPhone notch; content inside gets pushed down via padding. */
+  padding-top: var(--safe-top);
   background: var(--c-backdrop);
   backdrop-filter: blur(12px) saturate(1.1);
   -webkit-backdrop-filter: blur(12px) saturate(1.1);
@@ -19,11 +20,14 @@
 }
 
 .nav__inner {
-  height: 100%;
+  height: var(--nav-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--s-4);
+  gap: var(--s-3);
+  /* Keep content clear of rounded-display curves. */
+  padding-left: max(var(--gutter), var(--safe-left));
+  padding-right: max(var(--gutter), var(--safe-right));
 }
 
 .nav__brand {
@@ -85,8 +89,8 @@
 }
 
 .nav__theme {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -95,35 +99,50 @@
   transition: color var(--t-fast), background-color var(--t-fast);
 }
 .nav__theme:hover { color: var(--c-accent); background: var(--c-bg-alt); }
+.nav__theme svg { width: 18px; height: 18px; display: block; }
 
+/* Burger: 44×44 tap target with a smaller visual inside. */
 .nav__burger {
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 18px;
-  padding: 2px 0;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.nav__burger::before {
+  /* the visual 3-line stack lives inside via ::before and spans */
+  display: none;
 }
 .nav__burger span {
-  display: block;
+  position: absolute;
+  left: 50%;
+  width: 22px;
+  margin-left: -11px;
   height: 1.5px;
   background: var(--c-ink);
-  transition: transform var(--t-fast), opacity var(--t-fast);
+  transition: transform var(--t-fast), opacity var(--t-fast), top var(--t-fast);
 }
-:host.menu-open .nav__burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__burger span:nth-child(1) { top: calc(50% - 6px); }
+.nav__burger span:nth-child(2) { top: 50%; }
+.nav__burger span:nth-child(3) { top: calc(50% + 6px); }
+:host.menu-open .nav__burger span:nth-child(1) { top: 50%; transform: rotate(45deg); }
 :host.menu-open .nav__burger span:nth-child(2) { opacity: 0; }
-:host.menu-open .nav__burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+:host.menu-open .nav__burger span:nth-child(3) { top: 50%; transform: rotate(-45deg); }
 
 /* Mobile overlay */
 .nav__overlay {
   position: fixed;
-  inset: var(--nav-h) 0 0 0;
+  inset: calc(var(--nav-h) + var(--safe-top)) 0 0 0;
   background: var(--c-bg);
   z-index: 99;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: var(--s-7) var(--gutter);
+  padding: var(--s-6) var(--gutter) calc(var(--s-7) + var(--safe-bottom));
+  /* If link list is taller than viewport (small phones in landscape), scroll. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
   animation: overlay-fade 260ms var(--ease-out);
 }
 @keyframes overlay-fade { from { opacity: 0; } to { opacity: 1; } }
@@ -136,15 +155,16 @@
   max-width: 480px;
   display: flex;
   flex-direction: column;
-  gap: var(--s-3);
+  gap: 0;
 }
 .nav__overlay-links a {
   display: flex;
   align-items: baseline;
   gap: var(--s-4);
-  padding: var(--s-3) 0;
+  /* Guarantee ≥44px tap targets even with smaller visual padding. */
+  padding: var(--s-4) 0;
   font-family: var(--ff-display);
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 6vw, 2rem);
   color: var(--c-ink);
   border-bottom: 1px solid var(--c-line);
 }
@@ -154,9 +174,16 @@
 
 @media (max-width: 900px) {
   .nav__links { display: none; }
-  .nav__burger { display: flex; }
+  .nav__burger { display: inline-flex; }
+  .nav__inner { gap: var(--s-2); }
 }
 
 @media (min-width: 901px) {
   .nav__overlay { display: none; }
+}
+
+/* Very narrow screens: tighten brand mark so nothing wraps to 2 lines. */
+@media (max-width: 360px) {
+  .nav__brand { font-size: 1.1rem; }
+  .nav__brand-mark { display: none; }
 }

@@ -7,6 +7,11 @@
   pointer-events: auto;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  /* Respect notches / gesture bar. */
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
   animation: lb-fade 200ms var(--ease-out);
   overscroll-behavior: contain;
   touch-action: none;
@@ -54,8 +59,8 @@
   border-radius: 2px;
   z-index: 2;
 }
-.lb-nav--prev { left: var(--s-4); }
-.lb-nav--next { right: var(--s-4); }
+.lb-nav--prev { left: max(var(--s-4), var(--safe-left)); }
+.lb-nav--next { right: max(var(--s-4), var(--safe-right)); }
 
 /* Stage: holds the image. Pointer events here handle pinch + drag. */
 .lb-stage {
@@ -95,7 +100,9 @@
   position: relative;
   z-index: 1;
   max-width: 92vw;
+  /* vh fallback first, dvh second so mobile browsers account for chrome. */
   max-height: calc(100vh - 200px);
+  max-height: calc(100dvh - 200px - var(--safe-top) - var(--safe-bottom));
   width: auto;
   height: auto;
   object-fit: contain;
@@ -155,19 +162,40 @@
   color: rgba(235, 228, 215, 0.75);
 }
 .lb-zoom__btn {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border: 1px solid rgba(235, 228, 215, 0.18);
   border-radius: 2px;
   transition: border-color var(--t-fast), color var(--t-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .lb-zoom__btn:hover { border-color: var(--c-accent); color: var(--c-accent); }
 .lb-zoom__level { min-width: 3em; text-align: center; letter-spacing: 0.08em; }
 
 @media (max-width: 640px) {
   .lb-nav { display: none; }
-  .lb-img { max-height: calc(100vh - 220px); max-width: 100vw; }
+  .lb-img {
+    max-width: 100vw;
+    max-height: calc(100vh - 220px);
+    max-height: calc(100dvh - 220px - var(--safe-top) - var(--safe-bottom));
+  }
   .lb-exif { font-size: 0.62rem; gap: var(--s-3); }
-  .lb-topbar { padding: var(--s-3) var(--s-4); }
-  .lb-meta { flex-direction: column; align-items: flex-start; padding: var(--s-3) var(--s-4); }
+  .lb-topbar { padding: var(--s-2) var(--s-3); }
+  .lb-meta { flex-direction: column; align-items: flex-start; gap: var(--s-2); padding: var(--s-3) var(--s-3); }
+  .lb-zoom { width: 100%; justify-content: space-between; }
+  .lb-zoom__btn { width: 40px; height: 40px; font-size: 1.1rem; }
+  .lb-zoom__level { flex: 1; }
+  .lb-exif { order: 2; }
+  .lb-zoom { order: 1; }
+}
+
+/* Tiny phones: drop exif to save vertical space and give more to image. */
+@media (max-width: 380px) {
+  .lb-exif { display: none; }
+  .lb-img {
+    max-height: calc(100vh - 140px);
+    max-height: calc(100dvh - 140px - var(--safe-top) - var(--safe-bottom));
+  }
 }

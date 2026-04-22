@@ -1,10 +1,10 @@
 .gallery-page {
-  padding: calc(var(--nav-h) + var(--s-8)) 0 var(--s-9);
+  padding: calc(var(--nav-h) + var(--safe-top) + var(--s-7)) 0 var(--s-9);
 }
 
 .gallery-head {
   max-width: 640px;
-  margin-bottom: var(--s-8);
+  margin-bottom: var(--s-7);
 }
 
 .gallery-head__eyebrow {
@@ -36,4 +36,12 @@
   display: block;
   margin-bottom: var(--s-3);
   color: var(--c-accent);
+}
+
+@media (max-width: 700px) {
+  .gallery-page {
+    padding: calc(var(--nav-h) + var(--safe-top) + var(--s-5)) 0 var(--s-7);
+  }
+  .gallery-head { margin-bottom: var(--s-5); }
+  .gallery-head__desc { font-size: 1rem; }
 }

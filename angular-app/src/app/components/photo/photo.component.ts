@@ -9,6 +9,7 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+// ElementRef kept imported for the template ViewChild type; host ref no longer needed.
 import { ManifestEntry, CategorySlug } from '../../shared/manifest.model';
 import { imageUrl, Tier } from '../../shared/image-url';
 
@@ -28,7 +29,11 @@ import { imageUrl, Tier } from '../../shared/image-url';
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <figure class="photo" [class.is-loaded]="loaded">
+    <figure
+      class="photo"
+      [class.is-loaded]="loaded"
+      [style.aspect-ratio]="entry.w + ' / ' + entry.h"
+    >
       <img class="photo__lqip" [src]="entry.lqip" aria-hidden="true" alt="" />
       <picture>
         <source [srcset]="srcsetWebp" [sizes]="sizes" type="image/webp" />
@@ -57,7 +62,6 @@ import { imageUrl, Tier } from '../../shared/image-url';
         position: relative;
         margin: 0;
         width: 100%;
-        aspect-ratio: var(--ar, auto);
         overflow: hidden;
         background: var(--c-bg-alt);
       }
@@ -100,7 +104,6 @@ export class PhotoComponent implements AfterViewInit {
 
   loaded = false;
   private platformId = inject(PLATFORM_ID);
-  private host = inject(ElementRef<HTMLElement>);
 
   get fallbackJpg(): string {
     return imageUrl(this.category, this.tier, this.entry.id, 'jpg');
@@ -126,7 +129,6 @@ export class PhotoComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.host.nativeElement.style.setProperty('--ar', `${this.entry.w} / ${this.entry.h}`);
     if (!isPlatformBrowser(this.platformId)) return;
     // Catch cached images that load before the handler attaches.
     const el = this.imgRef?.nativeElement;
