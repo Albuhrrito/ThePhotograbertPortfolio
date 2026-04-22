@@ -1,0 +1,35 @@
+# ---------- Photograbert repo .gitignore ----------
+
+# Original full-resolution sources — the image pipeline consumes these.
+# They total ~2 GB and are NOT needed to run or deploy the built site.
+/incoming/
+
+# Build + dev logs
+/scripts/pipeline.log
+/angular-app/ng-serve.log
+/angular-app/dist/
+/angular-app/.angular/
+
+# Node + environment
+node_modules/
+*.log
+.env
+.env.local
+.env.*.local
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+
+# Stray Windows artifact from `2>/dev/null` misinterpretations
+/nul
+
+# Claude Code runtime state (scheduled tasks lock, etc.)
+.claude/
+

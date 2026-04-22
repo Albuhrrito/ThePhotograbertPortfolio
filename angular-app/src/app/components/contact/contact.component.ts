@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
-import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 
 @Component({
   selector: 'app-contact',
-  imports: [RouterModule, ReactiveFormsModule, CommonModule, DarkModeToggleComponent],
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })

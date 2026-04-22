@@ -1,40 +1,130 @@
-<!-- Dark Mode Toggle -->
-<app-dark-mode-toggle></app-dark-mode-toggle>
-
-<!-- Background Image Container -->
-<div class="background-container" [ngStyle]="getBackgroundStyle()">
-
-  <!-- Content Overlay -->
-  <div class="content-overlay">
-    
-    <!-- Header -->
-    <header class="w3-panel w3-center" style="padding:2vh 16px">
-      <h1 id="name">Albert "The Photograbert" Youssef</h1>
-      <p id="quote">
-        "What I like about photographs is that they capture a moment that's gone forever, impossible to reproduce." – Karl Lagerfeld
-      </p>
-      
-      <!-- Navigation -->
-      <div class="w3-padding-32">
-        <div class="w3-bar w3-border navbar-container">
-          <a routerLink="/portraits" class="w3-bar-item w3-button">Portraits</a>
-          <a routerLink="/street" class="w3-bar-item w3-button w3-light-grey">Street</a>
-          <a routerLink="/products" class="w3-bar-item w3-button">Products</a>
-          <a routerLink="/landscape" class="w3-bar-item w3-button w3-light-grey">Landscape</a>
-          <a routerLink="/graduation" class="w3-bar-item w3-button">Graduation</a>
-          <a routerLink="/aesthetics" class="w3-bar-item w3-button w3-light-grey">Aesthetics</a>
-          <a routerLink="/contact" class="w3-bar-item w3-button">Contact</a>
-        </div>
+<!-- ─── Hero: Ken Burns slideshow ───────────────────────────────────────── -->
+<section class="hero" aria-label="Featured photography">
+  <div class="hero__slides">
+    @for (h of heroImages; track h.id; let i = $index) {
+      <div
+        class="hero__slide"
+        [class.is-active]="currentHeroIndex() === i"
+      >
+        <img class="hero__lqip" [src]="h.lqip" alt="" aria-hidden="true" />
+        <picture>
+          <source [srcset]="heroUrlLarge(h)" type="image/webp" />
+          <img
+            class="hero__img"
+            [src]="heroUrlLargeJpg(h)"
+            [alt]="h.alt"
+            [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+            [attr.fetchpriority]="i === 0 ? 'high' : 'auto'"
+            [attr.decoding]="i === 0 ? 'sync' : 'async'"
+            draggable="false"
+          />
+        </picture>
       </div>
-    </header>
-    
+    }
+    @if (!heroImages.length) {
+      <div class="hero__fallback"></div>
+    }
   </div>
-  
-</div>
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-large" [style.background-color]="'var(--bg-footer)'"> 
-  <a target="_blank" title="ig" href="https://www.instagram.com/thephotograbert" class="fa fa-instagram w3-hover-opacity"></a>
-  <a target="_blank" title="ln" href="https://www.linkedin.com/in/albert-youssef-5420341ba/" class="fa fa-linkedin w3-hover-opacity"></a>
-  <a target="_blank" title="main" href="https://www.albruh.tech" class="fa fa-home w3-hover-opacity"></a>
-</footer>
+  <div class="hero__overlay">
+    <div class="hero__content container">
+      <span class="label hero__eyebrow">Albert &ldquo;The Photograbert&rdquo; Youssef</span>
+      <h1 class="hero__title">Moments,<br/>rendered honestly.</h1>
+      <p class="hero__tagline">
+        Portraits, sports, streets, and the in-between.
+        An Irvine, California&ndash;based photographer, through the viewfinder and beyond.
+      </p>
+      <div class="hero__ctas">
+        <a routerLink="/portraits" class="btn btn--primary">Browse Work</a>
+        <a routerLink="/contact" class="btn btn--ghost">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide pagination dots -->
+  @if (heroImages.length > 1) {
+    <div class="hero__pager" role="tablist">
+      @for (h of heroImages; track h.id; let i = $index) {
+        <button
+          class="hero__dot"
+          [class.is-active]="currentHeroIndex() === i"
+          (click)="currentHeroIndex.set(i)"
+          [attr.aria-label]="'Slide ' + (i + 1)"
+        ></button>
+      }
+    </div>
+  }
+
+  <div class="hero__scroll-hint" aria-hidden="true">
+    <span class="label">Scroll</span>
+    <span class="hero__scroll-line"></span>
+  </div>
+</section>
+
+<!-- ─── Categories ──────────────────────────────────────────────────────── -->
+<section class="categories container" aria-label="Portfolio categories">
+  <header class="section-head">
+    <span class="label">01 &mdash; Work</span>
+    <h2>Seven lanes, one eye.</h2>
+    <p class="section-head__lede">
+      Choose a thread. Each section is a small catalog of frames I keep coming back to.
+    </p>
+  </header>
+
+  <ul class="cat-grid">
+    @for (c of categories; track c.slug; let i = $index) {
+      <li
+        #catCard
+        class="cat-card"
+        [attr.data-viewfinder]="''"
+        [style.--cat-index]="i"
+      >
+        <a [routerLink]="['/', c.slug]" class="cat-card__link">
+          <div class="cat-card__image">
+            @if (featuredFor(c.slug); as entry) {
+              <app-photo
+                [entry]="entry"
+                [category]="c.slug"
+                tier="medium"
+                [sizes]="'(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw'"
+              />
+            }
+            <span class="viewfinder-corners"><span></span></span>
+          </div>
+          <div class="cat-card__info">
+            <span class="label cat-card__num">{{ (i + 1) | number:'2.0' }}</span>
+            <h3 class="cat-card__title">{{ c.title }}</h3>
+            <p class="cat-card__desc">{{ c.description }}</p>
+            <span class="cat-card__cta">View gallery
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+        </a>
+      </li>
+    }
+  </ul>
+</section>
+
+<!-- ─── About teaser ─────────────────────────────────────────────────────── -->
+<section class="about-teaser container" aria-label="About the photographer">
+  <div class="about-teaser__image">
+    @if (aboutImage) {
+      <app-photo
+        [entry]="aboutImage"
+        category="about"
+        tier="medium"
+        sizes="(max-width: 800px) 100vw, 40vw"
+      />
+    }
+  </div>
+  <div class="about-teaser__copy">
+    <span class="label">02 &mdash; About</span>
+    <h2>I make pictures that feel specifically true.</h2>
+    <p>
+      Based in Irvine, California. Fujifilm in one hand, curiosity in the other.
+      Portraits, products, and the occasional long walk through a city I've never
+      been to. If a photograph can't be reproduced, it's worth showing up for.
+    </p>
+    <a routerLink="/about" class="btn btn--ghost">Read more</a>
+  </div>
+</section>

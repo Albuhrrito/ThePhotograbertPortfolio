@@ -1,0 +1,23 @@
+@if (meta(); as m) {
+  <section class="gallery-page container">
+    <header class="gallery-head">
+      <span class="label gallery-head__eyebrow">
+        {{ m.slug.toUpperCase() }} &middot; {{ count() | number:'2.0' }} frames
+      </span>
+      <h1 class="gallery-head__title">{{ m.title }}</h1>
+      <p class="gallery-head__desc">{{ m.description }}</p>
+    </header>
+
+    @if (entries().length) {
+      <app-masonry-gallery
+        [entries]="entries()"
+        [category]="m.slug"
+      />
+    } @else {
+      <div class="gallery-empty">
+        <span class="label">Coming soon</span>
+        <p>This category doesn't have any frames yet. Check back shortly.</p>
+      </div>
+    }
+  </section>
+}

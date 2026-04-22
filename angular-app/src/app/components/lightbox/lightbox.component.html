@@ -1,0 +1,73 @@
+@if (state().open) {
+  <div
+    class="lb-overlay"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="currentEntry().alt"
+  >
+    <!-- Top bar: counter + close -->
+    <div class="lb-topbar">
+      <span class="lb-counter label">
+        {{ state().index + 1 | number:'2.0' }} / {{ state().entries.length | number:'2.0' }}
+      </span>
+      <button class="lb-btn" (click)="close()" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Prev / Next -->
+    <button class="lb-nav lb-nav--prev" (click)="prev()" aria-label="Previous">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="lb-nav lb-nav--next" (click)="next()" aria-label="Next">
+      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- Stage -->
+    <div
+      class="lb-stage"
+      (pointerdown)="onPointerDown($event)"
+      (pointermove)="onPointerMove($event)"
+      (pointerup)="onPointerUp($event)"
+      (pointercancel)="onPointerUp($event)"
+    >
+      @if (currentEntry(); as e) {
+        <div class="lb-figure" [class.is-zoomed]="zoom() > 1" [style.transform]="transform()">
+          <img class="lb-lqip" [src]="e.lqip" alt="" aria-hidden="true" />
+          <picture>
+            <source [srcset]="currentLargeUrl()" type="image/webp" />
+            <img class="lb-img lb-img--large" [src]="currentLargeUrlJpg()" [alt]="e.alt" draggable="false" />
+          </picture>
+          @if (upgradedToFull()) {
+            <picture>
+              <source [srcset]="currentFullUrl()" type="image/webp" />
+              <img class="lb-img lb-img--full" [src]="currentFullUrlJpg()" [alt]="e.alt" draggable="false" />
+            </picture>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Bottom metadata strip -->
+    @if (currentEntry(); as e) {
+      <div class="lb-meta">
+        <ul class="lb-exif">
+          @for (t of exifTokens(e.exif); track t.label) {
+            <li>
+              <span class="lb-exif__label">{{ t.label }}</span>
+              <span class="lb-exif__value">{{ t.value }}</span>
+            </li>
+          }
+        </ul>
+        <div class="lb-zoom">
+          <button class="lb-zoom__btn" (click)="zoomOut()" aria-label="Zoom out">−</button>
+          <span class="lb-zoom__level">{{ zoom() | number:'1.1-1' }}×</span>
+          <button class="lb-zoom__btn" (click)="zoomIn()" aria-label="Zoom in">+</button>
+          <button class="lb-zoom__btn lb-zoom__btn--reset" (click)="resetZoom()" aria-label="Reset zoom">⟲</button>
+        </div>
+      </div>
+    }
+  </div>
+}

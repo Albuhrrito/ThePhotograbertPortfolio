@@ -1,139 +1,98 @@
-<app-dark-mode-toggle></app-dark-mode-toggle>
-<!-- !PAGE CONTENT! -->
-<div class="w3-content" style="max-width:1500px">
+<section class="contact container">
+  <header class="contact__head">
+    <span class="label">Contact</span>
+    <h1>Say hello.</h1>
+    <p class="contact__lede">
+      Editorial, commercial, or just a conversation &mdash; I read every message
+      and reply within a day or two.
+    </p>
+  </header>
 
-<!-- Header -->
-<header class="w3-panel w3-center w3-opacity" style="padding:1vh 16px">
-  <h1 id="name">Albert Youssef</h1>
-  <p id="quote">"What I like about photographs is that they capture a moment that's gone forever, impossible to reproduce." – Karl Lagerfeld</p>
-  
-  <div class="w3-padding-32">
-    <div class="w3-bar w3-border navbar-container">
-      <a routerLink="/" class="w3-bar-item w3-button w3-light-grey" [style.background]="'transparent'">Home</a>
-      <a routerLink="/portraits" class="w3-bar-item w3-button" [style.background]="'transparent'">Portraits</a>
-      <a routerLink="/street" class="w3-bar-item w3-button w3-light-grey" [style.background]="'transparent'">Street</a>
-      <a routerLink="/products" class="w3-bar-item w3-button" [style.background]="'transparent'">Products</a>
-      <a routerLink="/landscape" class="w3-bar-item w3-button w3-light-grey" [style.background]="'transparent'">Landscape</a>
-      <a routerLink="/graduation" class="w3-bar-item w3-button" [style.background]="'transparent'">Graduation</a>
-      <a routerLink="/aesthetics" class="w3-bar-item w3-button w3-light-grey" [style.background]="'transparent'">Aesthetics</a>
-      <a routerLink="/contact" class="w3-bar-item w3-button" [style.background]="'transparent'">Contact</a>
-    </div>
-  </div>
-</header>
+  <div class="contact__grid">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" novalidate>
 
-<!-- Contact Form -->
-<div class="form-container" style="margin-bottom:128px">
-  <h2 class="form-title">Get In Touch</h2>
-  <p class="form-subtitle">I'd love to hear about your photography needs. Send me a message and I'll get back to you soon!</p>
-  
-  <!-- Success/Error Messages -->
-  <div *ngIf="submitMessage" class="message-container" 
-       [class.success-message]="submitMessageType === 'success'"
-       [class.error-message]="submitMessageType === 'error'">
-    {{ submitMessage }}
-  </div>
-  
-  <!-- Contact Form -->
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
-    
-    <!-- Name Row -->
-    <div class="form-row">
-      <div class="form-group half-width">
-        <label for="firstName">First Name *</label>
-        <input 
-          type="text" 
-          id="firstName" 
-          formControlName="firstName"
-          [class.invalid]="isFieldInvalid('firstName')"
-          placeholder="Your first name">
-        <div *ngIf="isFieldInvalid('firstName')" class="error-text">
-          {{ getFieldError('firstName') }}
+      @if (submitMessage) {
+        <div class="form-message"
+             [class.form-message--success]="submitMessageType === 'success'"
+             [class.form-message--error]="submitMessageType === 'error'"
+             role="status">
+          {{ submitMessage }}
+        </div>
+      }
+
+      <div class="form-row">
+        <div class="field">
+          <label for="firstName" class="label">First name</label>
+          <input id="firstName" type="text" formControlName="firstName"
+                 [class.is-invalid]="isFieldInvalid('firstName')" />
+          @if (isFieldInvalid('firstName')) {
+            <span class="field__error">{{ getFieldError('firstName') }}</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="lastName" class="label">Last name</label>
+          <input id="lastName" type="text" formControlName="lastName"
+                 [class.is-invalid]="isFieldInvalid('lastName')" />
+          @if (isFieldInvalid('lastName')) {
+            <span class="field__error">{{ getFieldError('lastName') }}</span>
+          }
         </div>
       </div>
-      
-      <div class="form-group half-width">
-        <label for="lastName">Last Name *</label>
-        <input 
-          type="text" 
-          id="lastName" 
-          formControlName="lastName"
-          [class.invalid]="isFieldInvalid('lastName')"
-          placeholder="Your last name">
-        <div *ngIf="isFieldInvalid('lastName')" class="error-text">
-          {{ getFieldError('lastName') }}
-        </div>
+
+      <div class="field">
+        <label for="email" class="label">Email</label>
+        <input id="email" type="email" formControlName="email"
+               [class.is-invalid]="isFieldInvalid('email')" />
+        @if (isFieldInvalid('email')) {
+          <span class="field__error">{{ getFieldError('email') }}</span>
+        }
       </div>
-    </div>
-    
-    <!-- Email -->
-    <div class="form-group">
-      <label for="email">Email Address *</label>
-      <input 
-        type="email" 
-        id="email" 
-        formControlName="email"
-        [class.invalid]="isFieldInvalid('email')"
-        placeholder="your.email@example.com">
-      <div *ngIf="isFieldInvalid('email')" class="error-text">
-        {{ getFieldError('email') }}
+
+      <div class="field">
+        <label for="subject" class="label">Subject</label>
+        <input id="subject" type="text" formControlName="subject"
+               placeholder="What's the shoot?"
+               [class.is-invalid]="isFieldInvalid('subject')" />
+        @if (isFieldInvalid('subject')) {
+          <span class="field__error">{{ getFieldError('subject') }}</span>
+        }
       </div>
-    </div>
-    
-    <!-- Subject -->
-    <div class="form-group">
-      <label for="subject">Subject *</label>
-      <input 
-        type="text" 
-        id="subject" 
-        formControlName="subject"
-        [class.invalid]="isFieldInvalid('subject')"
-        placeholder="What's this about?">
-      <div *ngIf="isFieldInvalid('subject')" class="error-text">
-        {{ getFieldError('subject') }}
+
+      <div class="field">
+        <label for="message" class="label">Message</label>
+        <textarea id="message" rows="6" formControlName="message"
+                  placeholder="Tell me about the project, the date, the mood…"
+                  [class.is-invalid]="isFieldInvalid('message')"></textarea>
+        @if (isFieldInvalid('message')) {
+          <span class="field__error">{{ getFieldError('message') }}</span>
+        }
       </div>
-    </div>
-    
-    <!-- Message -->
-    <div class="form-group">
-      <label for="message">Message *</label>
-      <textarea 
-        id="message" 
-        formControlName="message"
-        [class.invalid]="isFieldInvalid('message')"
-        placeholder="Tell me about your photography needs, event details, or any questions you have..."
-        rows="6"></textarea>
-      <div *ngIf="isFieldInvalid('message')" class="error-text">
-        {{ getFieldError('message') }}
-      </div>
-    </div>
-    
-    <!-- Submit Button -->
-    <div class="form-group">
-      <button 
-        type="submit" 
-        class="submit-btn"
-        [disabled]="isSubmitting">
-        <span *ngIf="!isSubmitting">Send Message</span>
-        <span *ngIf="isSubmitting">Sending...</span>
+
+      <button type="submit" class="btn btn--primary" [disabled]="isSubmitting">
+        @if (!isSubmitting) { <span>Send message</span> }
+        @if (isSubmitting)  { <span>Sending&hellip;</span> }
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
-    </div>
-    
-  </form>
-  
-  <!-- Contact Info -->
-  <div class="contact-info">
-    <p><strong>Prefer to reach out directly?</strong></p>
-    <p>You can also find me on social media using the links below.</p>
+    </form>
+
+    <aside class="contact__aside">
+      <div class="aside-block">
+        <span class="label">Prefer direct?</span>
+        <a href="https://www.instagram.com/thephotograbert" target="_blank" rel="noopener" class="aside-link">
+          <span>&#64;thephotograbert</span>
+          <span class="label">Instagram DM</span>
+        </a>
+        <a href="https://www.linkedin.com/in/albert-youssef-5420341ba/" target="_blank" rel="noopener" class="aside-link">
+          <span>Albert Youssef</span>
+          <span class="label">LinkedIn</span>
+        </a>
+      </div>
+
+      <div class="aside-block">
+        <span class="label">Based in</span>
+        <p class="aside-text">Irvine, California &mdash; available across Southern California and beyond for editorial, commercial, and personal work.</p>
+      </div>
+    </aside>
   </div>
-  
-</div>
-
-<!-- End Page Content -->
-</div>
-
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large" [style.background-color]="'var(--bg-footer)'"> 
-  <a target="_blank" title="ig" href="https://www.instagram.com/thephotograbert" class="fa fa-instagram w3-hover-opacity"></a>
-  <a target="_blank" title="ln" href="https://www.linkedin.com/in/albert-youssef-5420341ba/" class="fa fa-linkedin w3-hover-opacity"></a>
-  <a target="_blank" title="main" href="https://www.albruh.tech" class="fa fa-home w3-hover-opacity"></a>
-</footer>
+</section>

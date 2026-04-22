@@ -1,0 +1,55 @@
+<nav class="nav" role="navigation" aria-label="Primary">
+  <div class="nav__inner container">
+    <a class="nav__brand" routerLink="/" (click)="closeMenu()">
+      <span class="nav__brand-mark" aria-hidden="true">[</span>
+      <span class="nav__brand-name">Photograbert</span>
+      <span class="nav__brand-mark" aria-hidden="true">]</span>
+    </a>
+
+    <ul class="nav__links">
+      @for (c of categories; track c.slug) {
+        <li>
+          <a
+            [routerLink]="['/', c.slug]"
+            routerLinkActive="is-active"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >{{ c.title }}</a>
+        </li>
+      }
+      <li><a routerLink="/about" routerLinkActive="is-active">About</a></li>
+      <li><a routerLink="/contact" routerLinkActive="is-active">Contact</a></li>
+    </ul>
+
+    <div class="nav__controls">
+      <button class="nav__theme" (click)="toggleTheme()" [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'">
+        @if (isDark()) {
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        } @else {
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        }
+      </button>
+      <button class="nav__burger" (click)="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile overlay menu -->
+  @if (menuOpen()) {
+    <div class="nav__overlay" (click)="closeMenu()">
+      <ul class="nav__overlay-links" (click)="$event.stopPropagation()">
+        @for (c of categories; track c.slug) {
+          <li>
+            <a [routerLink]="['/', c.slug]" routerLinkActive="is-active" (click)="closeMenu()">
+              <span class="label">{{ $index + 1 | number:'2.0' }}</span>
+              <span class="nav__overlay-title">{{ c.title }}</span>
+            </a>
+          </li>
+        }
+        <li class="nav__overlay-divider"></li>
+        <li><a routerLink="/about" (click)="closeMenu()"><span class="nav__overlay-title">About</span></a></li>
+        <li><a routerLink="/contact" (click)="closeMenu()"><span class="nav__overlay-title">Contact</span></a></li>
+      </ul>
+    </div>
+  }
+</nav>

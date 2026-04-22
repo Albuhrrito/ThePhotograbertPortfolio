@@ -1,63 +1,91 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  QueryList,
+  ViewChildren,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { PhotoComponent } from '../photo/photo.component';
+import { ManifestService } from '../../services/manifest.service';
+import { CATEGORIES, ManifestEntry } from '../../shared/manifest.model';
+import { imageUrl } from '../../shared/image-url';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterModule, CommonModule, DarkModeToggleComponent],
+  standalone: true,
+  imports: [CommonModule, RouterLink, PhotoComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
-  backgroundImage: string = '';
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+  private manifests = inject(ManifestService);
+  private platformId = inject(PLATFORM_ID);
 
-  // Array of background images - randomly selected on each page load
-  private backgroundImages: string[] = [
-    'background-1.jpg',
-    'background-2.jpg',
-    'background-3.jpg',
-    'background-4.jpg',
-    'background-5.jpg'
-  ];
+  heroImages: ManifestEntry[] = [];
+  categories = CATEGORIES;
+  aboutImage?: ManifestEntry;
+
+  currentHeroIndex = signal(0);
+  private heroTimer?: ReturnType<typeof setInterval>;
+
+  @ViewChildren('catCard') catCards!: QueryList<ElementRef<HTMLElement>>;
+  private observer?: IntersectionObserver;
 
   ngOnInit(): void {
-    this.setRandomBackground();
+    this.heroImages = this.manifests.get('hero');
+    this.aboutImage = this.manifests.featured('about');
   }
 
-  private setRandomBackground(): void {
-    const randomIndex = Math.floor(Math.random() * this.backgroundImages.length);
-    const selectedImage = this.backgroundImages[randomIndex];
-    this.backgroundImage = `assets/home/optimized/${selectedImage}`;
-
-    // Debug logging
-    console.log('Random index:', randomIndex);
-    console.log('Selected image filename:', selectedImage);
-    console.log('Full image path:', this.backgroundImage);
-
-    // Also try to set CSS custom property as backup
-    if (typeof document !== 'undefined') {
-      document.documentElement.style.setProperty('--background-image', `url('${this.backgroundImage}')`);
-    }
+  heroUrlLarge(entry: ManifestEntry): string {
+    return imageUrl('hero', 'large', entry.id, 'webp');
+  }
+  heroUrlLargeJpg(entry: ManifestEntry): string {
+    return imageUrl('hero', 'large', entry.id, 'jpg');
   }
 
-  // Method to get the background style for the template
-  getBackgroundStyle(): object {
-    if (!this.backgroundImage) {
-      console.log('No background image set yet');
-      return {};
+  featuredFor(slug: typeof CATEGORIES[number]['slug']): ManifestEntry | undefined {
+    const meta = CATEGORIES.find(c => c.slug === slug);
+    if (meta?.heroImageId) {
+      const picked = this.manifests.findById(slug, meta.heroImageId);
+      if (picked) return picked;
+    }
+    return this.manifests.featured(slug);
+  }
+
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    // Cycle hero every 7 seconds
+    if (this.heroImages.length > 1) {
+      this.heroTimer = setInterval(() => {
+        this.currentHeroIndex.update(i => (i + 1) % this.heroImages.length);
+      }, 7000);
     }
 
-    const style = {
-      'background-image': `url('${this.backgroundImage}')`,
-      'background-size': 'cover',
-      'background-position': 'center center',
-      'background-attachment': 'fixed',
-      'background-repeat': 'no-repeat',
-      'background-color': 'var(--bg-primary)' // Fallback color uses theme variable
-    };
+    // Reveal category cards on scroll
+    this.observer = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).classList.add('is-revealed');
+          this.observer?.unobserve(e.target);
+        }
+      }
+    }, { rootMargin: '60px 0px', threshold: 0.05 });
+    this.catCards.forEach(c => this.observer?.observe(c.nativeElement));
+  }
 
-    console.log('Applied background style:', style);
-    return style;
+  ngOnDestroy(): void {
+    if (this.heroTimer) clearInterval(this.heroTimer);
+    this.observer?.disconnect();
   }
 }

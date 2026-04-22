@@ -2,10 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>The Photograbert</title>
+  <title>The Photograbert — Albert Youssef</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Portraits, modeling, sports, street, products, graduation, and aesthetics photography by Albert Youssef — the Photograbert. Toronto, Canada.">
+  <meta name="theme-color" content="#f5f1ea" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Photograbert — Albert Youssef">
+  <meta property="og:description" content="A photographer, through the viewfinder and beyond.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📷</text></svg>">
+
+  <!-- Inline critical color tokens so the first paint doesn't flash default white -->
+  <style>
+    :root { color-scheme: light dark; }
+    html { background: #f5f1ea; }
+    [data-theme="dark"] html, html[data-theme="dark"] { background: #0d0d0d; }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme]) { background: #0d0d0d; }
+    }
+  </style>
 </head>
 <body>
   <app-root></app-root>

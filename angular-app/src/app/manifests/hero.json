@@ -1,0 +1,92 @@
+[
+  {
+    "id": "_PK_0392",
+    "alt": "Photograph by Albert Youssef \u2014 hero",
+    "w": 6000,
+    "h": 4000,
+    "ar": 1.5,
+    "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAQABgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIEAQX/xAAhEAACAQMEAwEAAAAAAAAAAAABAhEAAxIEITFREyJB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/8QAGBEBAQADAAAAAAAAAAAAAAAAABEBIWH/2gAMAwEAAhEDEQA/AOcGAQsU4E8VTb07vpvLkVJO209ftT2rq3bAQqSsRkdq0h1ACliW5hogfAO++KN1WZOn1Fkpda0XzIMD5NFI74sWA9zsSTRSl//Z",
+    "exif": {
+      "camera": "ILCE-7M3",
+      "make": "SONY",
+      "lens": "FE 50mm F1.4 ZA",
+      "aperture": "f/4",
+      "shutter": "1/160s",
+      "iso": 100,
+      "focal": "50mm",
+      "date": "2025-05-26"
+    }
+  },
+  {
+    "id": "_PK_1008",
+    "alt": "Photograph by Albert Youssef \u2014 hero",
+    "w": 6000,
+    "h": 4000,
+    "ar": 1.5,
+    "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAQABgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAEDAgb/xAAfEAACAgIBBQAAAAAAAAAAAAAAAQIhAxEEMUJRcZH/xAAWAQEBAQAAAAAAAAAAAAAAAAABAgP/xAAYEQEAAwEAAAAAAAAAAAAAAAAAARITAv/aAAwDAQACEQMRAD8A5dLVaHtFI8ZO1k+ClgkqUrXk006TWGG010Ao8bj3Qk/aANZNH//Z",
+    "exif": {
+      "camera": "ILCE-7M3",
+      "make": "SONY",
+      "lens": "FE 24-105mm F4 G OSS",
+      "aperture": "f/4",
+      "shutter": "3.2s",
+      "iso": 50,
+      "focal": "105mm",
+      "date": "2025-07-04"
+    }
+  },
+  {
+    "id": "DSCF0502",
+    "alt": "Photograph by Albert Youssef \u2014 hero",
+    "w": 7728,
+    "h": 5152,
+    "ar": 1.5,
+    "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAQABgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAgP/xAAiEAABBQABAwUAAAAAAAAAAAABAAIDBBEFEiExFCJRYaH/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/EABcRAQEBAQAAAAAAAAAAAAAAAAABEUH/2gAMAwEAAhEDEQA/AOdYDAovK1bRkfPK3WknwdwKtWk7BZhkZZtWG2ifSwxOc4A5vcZ+pVmdKcHyMUUTq9mQg77CfA+tQk3zRMgLomdJJI+ShB//2Q==",
+    "exif": {
+      "camera": "X-T5",
+      "make": "FUJIFILM",
+      "lens": "Viltrox 85mm F1.8",
+      "aperture": "f/2.2",
+      "shutter": "1/125s",
+      "iso": 125,
+      "focal": "85mm",
+      "date": "2026-01-09"
+    }
+  },
+  {
+    "id": "DSCF9404",
+    "alt": "Photograph by Albert Youssef \u2014 hero",
+    "w": 7728,
+    "h": 5152,
+    "ar": 1.5,
+    "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAQABgDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEAv/EACAQAAICAQQDAQAAAAAAAAAAAAECABESAyFBYTFRkbH/xAAVAQEBAAAAAAAAAAAAAAAAAAAAA//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AIcghGLX3HhlAySiGFWTzJ0LpVMCDTWVuoZEpY8A7L77klTDqM2aYllXah+wmLOlpmicq35H2ED/2Q==",
+    "exif": {
+      "camera": "X-T5",
+      "make": "FUJIFILM",
+      "lens": "17-70mm F/2.8 DiIII-A VC RXD B070X\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "aperture": "f/6.3",
+      "shutter": "1/104s",
+      "iso": 3200,
+      "focal": "70mm",
+      "date": "2025-12-14"
+    }
+  },
+  {
+    "id": "DSCF9739",
+    "alt": "Photograph by Albert Youssef \u2014 hero",
+    "w": 7190,
+    "h": 4793,
+    "ar": 1.5001,
+    "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAQABgDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEA//EAB4QAAICAgMBAQAAAAAAAAAAAAECAAMRIQQSMUET/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgEE/8QAGhEBAAIDAQAAAAAAAAAAAAAAAQACESEiYf/aAAwDAQACEQMRAD8AjpRuOq2s6gPjK+4Ea9z2Ra+rjHmZjTba9QoVtto5lFdVXHcfc67fJhfY3lzJ6HtWwLnRI7AmEXlFf3Br3oeQlTO4mpbbP//Z",
+    "exif": {
+      "camera": "X-T5",
+      "make": "FUJIFILM",
+      "lens": "17-70mm F/2.8 DiIII-A VC RXD B070X",
+      "aperture": "f/2.8",
+      "shutter": "1/1000s",
+      "iso": 500,
+      "focal": "70mm",
+      "date": "2025-08-21"
+    }
+  }
+]
