@@ -18,6 +18,24 @@
     }
   },
   {
+    "id": "_PK_0778",
+    "alt": "Photograph by Albert Youssef \u2014 portrait",
+    "w": 4000,
+    "h": 6000,
+    "ar": 0.6667,
+    "lqip": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABQODxIPDRQSEBIXFRQYHjIhHhwcHj0sLiQySUBMS0dARkVQWnNiUFVtVkVGZIhlbXd7gYKBTmCNl4x9lnN+gXz/2wBDARUXFx4aHjshITt8U0ZTfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHz/wAARCAAkABgDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAUBAwYC/8QAJxAAAgIBAgUDBQAAAAAAAAAAAQIAAxEEIQUSMUFRBhMUIzJhcYH/xAAYAQACAwAAAAAAAAAAAAAAAAAABAECA//EABwRAAMAAgMBAAAAAAAAAAAAAAABAgMREhMhQf/aAAwDAQACEQMRAD8A6mnUg1MbNhWMk/iSrvUIxvpbkpO3uEdvOJuRXYkZO6kEYkbUYL8rCwgORu38xjxF4y8l6XU7K1X1QSmAx6k7RMip7CHatQ1Y89RiIqtkon63jHxiAUzYDgANJD66uyltWy5trbBIO3N2OJNs1BvvLOxJySc9zNTYL47CPzhlIzVtM6rhvG1uAr1GFdl5c5+7bxE5VrGBUg4K9DEjpn4Co1MSLDiegdzETYoGPT9xEQA//9k=",
+    "exif": {
+      "camera": "ILCE-7M3",
+      "make": "SONY",
+      "lens": "FE 24-105mm F4 G OSS",
+      "aperture": "f/4",
+      "shutter": "1/160s",
+      "iso": 160,
+      "focal": "105mm",
+      "date": "2025-06-04"
+    }
+  },
+  {
     "id": "DSC_0252",
     "alt": "Photograph by Albert Youssef \u2014 portrait",
     "w": 3264,
