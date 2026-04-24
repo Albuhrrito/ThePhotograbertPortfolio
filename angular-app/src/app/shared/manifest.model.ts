@@ -74,7 +74,7 @@ export const CATEGORIES: CategoryMeta[] = [
     slug: 'graduation',
     title: 'Graduation',
     description:
-      'The ten minutes families plan a year around. Traditional shots and unguarded ones.',
+      'The walk, the hug, the grin that breaks through the pose. Years of work, caught in an afternoon.',
     heroImageId: 'DSCF9084',
   },
   {

@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
       <div class="footer__inner container">
         <div class="footer__col">
           <span class="label">Albert "The Photograbert" Youssef</span>
-          <p class="footer__tag">Moments, rendered honestly.</p>
+          <p class="footer__tag">Photographs that remember for you.</p>
         </div>
 
         <ul class="footer__links">
